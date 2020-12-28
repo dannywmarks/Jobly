@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches snapshot for company 1`] = `
+<DocumentFragment>
+  <a
+    class="CompanyCard card"
+    href="/companies/rithm"
+  >
+    <div
+      class="card-body"
+    >
+      <h6
+        class="card-title d-flex justify-content-between"
+      >
+        <span
+          class="text-capitalize"
+        >
+          Rithm School
+        </span>
+        <img
+          alt="Rithm School Logo"
+          src="https://pbs.twimg.com/profile_images/770491761412173826/ZUeIa4tw_400x400.jpg"
+        />
+      </h6>
+      <p>
+        Become an exceptional developer in 16 weeks.
+      </p>
+    </div>
+  </a>
+</DocumentFragment>
+`;
+
+exports[`matches snapshot for job 1`] = `
+<DocumentFragment>
+  <div
+    class="Card card"
+  >
+    <div
+      class="card-body"
+    >
+      <h6
+        class="card-title d-flex justify-content-between"
+      >
+        <span
+          class="text-capitalize"
+        >
+          CEO
+        </span>
+      </h6>
+      <div>
+        Salary: 1000000
+      </div>
+      <div>
+        Equity: 10
+      </div>
+      <button
+        class="btn btn-danger font-weight-bold text-uppercase float-right"
+      >
+        Apply
+      </button>
+    </div>
+  </div>
+</DocumentFragment>
+`;
