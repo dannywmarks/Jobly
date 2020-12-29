@@ -54,7 +54,6 @@ class JoblyApi {
   }
 
   static async applyToJob(username, id) {
-    console.log(username, id);
     let res = await this.request(`users/${username}/jobs/${id}`, {}, "post");
     return res.message;
   }
@@ -62,7 +61,6 @@ class JoblyApi {
   /** Login a user */
   static async login(data) {
     let res = await this.request(`auth/token`, data, "post");
-    console.log(res.token);
     return res.token;
   }
   /** Register a user */

@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Alert from "../Alert/Alert";
 import JoblyApi from "../../api/JoblyApi";
 import UserContext from "../../UserContext";
+import "./ProfileForm.css";
 
 /** Profile editing form.
  *
@@ -59,7 +60,6 @@ const ProfileForm = () => {
     setFormErrors([]);
     setSaveConfirmed(true);
 
-    
     // trigger reloading of user information throughout the site
     setCurrentUser(updatedUser);
   }
@@ -72,12 +72,11 @@ const ProfileForm = () => {
       [name]: value,
     }));
     setFormErrors([]);
-    
   }
 
   return (
     <div className="col-md-6 col-lg-4 offset-md-3 offset-lg-4">
-      <h3>Profile</h3>
+      <h3 className="mt-5">Profile</h3>
       <div className="card">
         <div className="card-body">
           <form>

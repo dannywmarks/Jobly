@@ -4,7 +4,7 @@ import useLocalStorage from "./Hooks/useLocalStorage";
 import Navbar from "./Components/Navbar/Navbar";
 import Routes from "./Components/Routes/Routes";
 import { BrowserRouter } from "react-router-dom";
-import { Spinner } from 'reactstrap';
+import { Spinner } from "reactstrap";
 import JoblyApi from "./api/JoblyApi";
 import UserContext from "./UserContext";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,6 +18,7 @@ const App = () => {
   const [infoLoaded, setInfoLoaded] = useState(false);
   // state for current user
   const [currentUser, setCurrentUser] = useState(null);
+  const [applicationIds, setApplicationIds] = useState(new Set([]));
 
   //hook used for token state
   const [token, setToken] = useLocalStorage(TOKEN_STORAGE_ID);
@@ -31,9 +32,7 @@ const App = () => {
     "token=",
     token
   );
-  console.log(token);
   // resets token and current user to null
-  
 
   // api call to get current user token
   useEffect(
@@ -64,23 +63,35 @@ const App = () => {
   );
 
   //if info is not loaded show spinner waiting for load
-  if (!infoLoaded) return <Spinner/>
+  if (!infoLoaded) return <Spinner />;
 
   const handleLogOut = () => {
     setCurrentUser(null);
     setToken(null);
   };
 
+  /** Checks if a job has been applied for. */
+  function hasAppliedToJob(id) {
+    return applicationIds.has(id);
+  }
+
+  /** Apply to a job: make API call and update set of application IDs. */
+  function applyToJob(id) {
+    if (hasAppliedToJob(id)) return;
+    JoblyApi.applyToJob(currentUser.username, id);
+    setApplicationIds(new Set([...applicationIds, id]));
+  }
+
   // use context to access state through out app
   return (
-    <div className="App">
-      <BrowserRouter>
-        <UserContext.Provider value={{ currentUser, setCurrentUser }}>
-          <Navbar logout={handleLogOut} />
-          <Routes setToken={setToken} />
-        </UserContext.Provider>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <UserContext.Provider
+        value={{ currentUser, setCurrentUser, hasAppliedToJob, applyToJob }}
+      >
+        <Navbar logout={handleLogOut} />
+        <Routes setToken={setToken} />
+      </UserContext.Provider>
+    </BrowserRouter>
   );
 };
 

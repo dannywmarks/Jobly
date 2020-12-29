@@ -5,7 +5,6 @@ import './Landing.css'
 
 const Landing = () => {
   const { currentUser } = useContext(UserContext);
-  console.log(currentUser)
   return (
     <div className="Home">
       <div className="container text-center">
